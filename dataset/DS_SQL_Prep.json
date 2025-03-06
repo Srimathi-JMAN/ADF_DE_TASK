@@ -5,8 +5,20 @@
 			"referenceName": "LS_SQL",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"table_name": {
+				"type": "String"
+			}
+		},
 		"annotations": [],
 		"type": "AzureSqlTable",
-		"schema": []
+		"schema": [],
+		"typeProperties": {
+			"schema": "prep",
+			"table": {
+				"value": "@dataset().table_name",
+				"type": "Expression"
+			}
+		}
 	}
 }

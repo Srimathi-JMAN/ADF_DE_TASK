@@ -172,6 +172,178 @@
 						}
 					]
 				}
+			},
+			{
+				"name": "ForEach CSV_copy1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "ForEach CSV",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@variables('file-names')",
+						"type": "Expression"
+					},
+					"isSequential": true,
+					"activities": [
+						{
+							"name": "Copy Product and Customer_copy1",
+							"type": "Copy",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "0.12:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "AzureSqlSource",
+									"queryTimeout": "02:00:00",
+									"partitionOption": "None"
+								},
+								"sink": {
+									"type": "AzureSqlSink",
+									"writeBehavior": "insert",
+									"sqlWriterUseTableLock": false,
+									"tableOption": "autoCreate",
+									"disableMetricsCollection": false
+								},
+								"enableStaging": false,
+								"translator": {
+									"type": "TabularTranslator",
+									"mappings": [
+										{
+											"source": {
+												"name": "Product ID",
+												"type": "String",
+												"physicalType": "String"
+											},
+											"sink": {
+												"name": "Product_ID",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Product",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Product",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Units Sold",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Units Sold",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Manufacturing Price",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Manufacturing Price",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Sale Price",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Sale Price",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Gross Sales",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Gross Sales",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Sales",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Sales",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										},
+										{
+											"source": {
+												"name": "Profit",
+												"type": "String"
+											},
+											"sink": {
+												"name": "Profit",
+												"type": "String",
+												"physicalType": "nvarchar"
+											}
+										}
+									],
+									"typeConversion": true,
+									"typeConversionSettings": {
+										"allowDataTruncation": false,
+										"treatBooleanAsNumber": false
+									}
+								}
+							},
+							"inputs": [
+								{
+									"referenceName": "DS_SQL_input",
+									"type": "DatasetReference",
+									"parameters": {
+										"table-names": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							],
+							"outputs": [
+								{
+									"referenceName": "DS_SQL_Prep",
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
+								}
+							]
+						}
+					]
+				}
 			}
 		],
 		"variables": {
@@ -182,11 +354,14 @@
 					"Customer"
 				]
 			},
-			"table-names": {
+			"order-files": {
 				"type": "Array",
 				"defaultValue": [
-					"Product",
-					"Customer"
+					"Day-1",
+					"Day-2",
+					"Day-3",
+					"Day-4",
+					"Day-5"
 				]
 			}
 		},
