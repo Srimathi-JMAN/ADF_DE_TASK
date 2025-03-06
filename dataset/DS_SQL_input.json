@@ -35,7 +35,7 @@
 			}
 		],
 		"typeProperties": {
-			"schema": "prep",
+			"schema": "staging",
 			"table": {
 				"value": "@dataset().table-names",
 				"type": "Expression"
