@@ -2,7 +2,7 @@
 	"name": "DB_ABLB_DE_TaskData",
 	"properties": {
 		"linkedServiceName": {
-			"referenceName": "LS_ABLB_Orders",
+			"referenceName": "LS_Blob_TaskData",
 			"type": "LinkedServiceReference"
 		},
 		"parameters": {
@@ -20,10 +20,9 @@
 					"value": "@dataset().file_name",
 					"type": "Expression"
 				},
-				"folderPath": "Order Details",
 				"container": "de-task-data"
 			},
-			"columnDelimiter": "Comma (,)",
+			"columnDelimiter": ",",
 			"escapeChar": "\\",
 			"firstRowAsHeader": true,
 			"quoteChar": "\""

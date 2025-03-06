@@ -45,7 +45,7 @@
 				],
 				"outputs": [
 					{
-						"referenceName": "DS_SQL_input",
+						"referenceName": "DS_SQL_Prep",
 						"type": "DatasetReference"
 					}
 				]
