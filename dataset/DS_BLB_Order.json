@@ -1,0 +1,33 @@
+{
+	"name": "DS_BLB_Order",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ABLB_Orders",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"Orders_files": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().Orders_files",
+					"type": "Expression"
+				},
+				"folderPath": "Order Details",
+				"container": "de-task-data"
+			},
+			"columnDelimiter": ",",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

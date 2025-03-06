@@ -1,0 +1,34 @@
+{
+	"name": "DB_ABLB_DE_TaskData",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "LS_ABLB_Orders",
+			"type": "LinkedServiceReference"
+		},
+		"parameters": {
+			"file_name": {
+				"type": "String",
+				"defaultValue": "\"\""
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().file_name",
+					"type": "Expression"
+				},
+				"folderPath": "Order Details",
+				"container": "de-task-data"
+			},
+			"columnDelimiter": "Comma (,)",
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
