@@ -16,7 +16,10 @@
 		"schema": [],
 		"typeProperties": {
 			"schema": "staging",
-			"table": "Product"
+			"table": {
+				"value": "@dataset().table_name",
+				"type": "Expression"
+			}
 		}
 	},
 	"type": "Microsoft.DataFactory/factories/datasets"

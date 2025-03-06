@@ -1,0 +1,25 @@
+{
+	"name": "CSV Blob to SQL Trigger",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "PL_TRAN_ABLB_TO_ASQL",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Day",
+				"interval": 1,
+				"startTime": "2025-03-06T12:50:00",
+				"endTime": "2025-03-07T12:50:00",
+				"timeZone": "India Standard Time"
+			}
+		}
+	}
+}
