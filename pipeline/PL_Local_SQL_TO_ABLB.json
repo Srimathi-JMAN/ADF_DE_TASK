@@ -8,6 +8,11 @@
 				"dependsOn": [],
 				"userProperties": [],
 				"typeProperties": {
+					"items": {
+						"value": "@variables('table_names')",
+						"type": "Expression"
+					},
+					"isSequential": true,
 					"activities": [
 						{
 							"name": "Copy data1",
@@ -66,7 +71,7 @@
 			}
 		],
 		"variables": {
-			"table_name": {
+			"table_names": {
 				"type": "Array",
 				"defaultValue": [
 					"products",

@@ -10,7 +10,7 @@
 		"typeProperties": {
 			"location": {
 				"type": "AzureBlobStorageLocation",
-				"fileName": "customers",
+				"fileName": "country_region",
 				"container": "de-mini-project"
 			},
 			"columnDelimiter": ",",
