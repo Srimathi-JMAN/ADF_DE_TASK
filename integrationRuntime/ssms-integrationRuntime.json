@@ -1,6 +1,9 @@
 {
 	"name": "ssms-integrationRuntime",
 	"properties": {
-		"type": "SelfHosted"
+		"type": "SelfHosted",
+		"typeProperties": {
+			"selfContainedInteractiveAuthoringEnabled": false
+		}
 	}
 }
