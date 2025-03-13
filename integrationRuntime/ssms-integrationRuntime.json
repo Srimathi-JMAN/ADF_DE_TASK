@@ -1,0 +1,6 @@
+{
+	"name": "ssms-integrationRuntime",
+	"properties": {
+		"type": "SelfHosted"
+	}
+}
