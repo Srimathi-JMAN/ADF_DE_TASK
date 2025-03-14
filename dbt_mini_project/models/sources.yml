@@ -1,0 +1,11 @@
+version: 2
+
+sources:
+  - name: raw
+    database: de_mini_project
+    schema: raw 
+    tables:
+      - name: raw_products
+      - name: raw_customers
+      - name: raw_transactions
+      - name: raw_country_region
