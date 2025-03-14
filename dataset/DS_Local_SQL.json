@@ -5,12 +5,20 @@
 			"referenceName": "LS__Local_SQL",
 			"type": "LinkedServiceReference"
 		},
+		"parameters": {
+			"table_name": {
+				"type": "String"
+			}
+		},
 		"annotations": [],
 		"type": "SqlServerTable",
 		"schema": [],
 		"typeProperties": {
 			"schema": "dbo",
-			"table": "raw_customers"
+			"table": {
+				"value": "@dataset().table_name",
+				"type": "Expression"
+			}
 		}
 	}
 }

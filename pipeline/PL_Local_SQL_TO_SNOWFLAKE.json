@@ -1,5 +1,5 @@
 {
-	"name": "PL_Local_SQL_TO_ABLB",
+	"name": "PL_Local_SQL_TO_SNOWFLAKE",
 	"properties": {
 		"activities": [
 			{
@@ -15,7 +15,7 @@
 					"isSequential": true,
 					"activities": [
 						{
-							"name": "Copy data1",
+							"name": "Local SQL To Snowflake",
 							"type": "Copy",
 							"dependsOn": [],
 							"policy": {
@@ -33,36 +33,46 @@
 									"partitionOption": "None"
 								},
 								"sink": {
-									"type": "DelimitedTextSink",
-									"storeSettings": {
-										"type": "AzureBlobStorageWriteSettings"
+									"type": "SnowflakeV2Sink",
+									"preCopyScript": {
+										"value": "@concat('Truncate table raw.',item())",
+										"type": "Expression"
 									},
-									"formatSettings": {
-										"type": "DelimitedTextWriteSettings",
-										"quoteAllText": true,
-										"fileExtension": ".txt"
+									"importSettings": {
+										"type": "SnowflakeImportCopyCommand"
 									}
 								},
-								"enableStaging": false,
-								"translator": {
-									"type": "TabularTranslator",
-									"typeConversion": true,
-									"typeConversionSettings": {
-										"allowDataTruncation": true,
-										"treatBooleanAsNumber": false
-									}
+								"enableStaging": true,
+								"stagingSettings": {
+									"linkedServiceName": {
+										"referenceName": "LS_ABLB",
+										"type": "LinkedServiceReference"
+									},
+									"path": "de-mini-project"
 								}
 							},
 							"inputs": [
 								{
 									"referenceName": "DS_Local_SQL",
-									"type": "DatasetReference"
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
 								}
 							],
 							"outputs": [
 								{
-									"referenceName": "DS_ABLB",
-									"type": "DatasetReference"
+									"referenceName": "DS_Snowflake",
+									"type": "DatasetReference",
+									"parameters": {
+										"table_name": {
+											"value": "@item()",
+											"type": "Expression"
+										}
+									}
 								}
 							]
 						}
@@ -74,10 +84,10 @@
 			"table_names": {
 				"type": "Array",
 				"defaultValue": [
-					"products",
-					"customers",
-					"transactions",
-					"country_region"
+					"RAW_PRODUCTS",
+					"RAW_CUSTOMERS",
+					"RAW_TRANSACTIONS",
+					"RAW_COUNTRY_REGION"
 				]
 			}
 		},
